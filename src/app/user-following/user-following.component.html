@@ -1,0 +1,27 @@
+<div class="form-group col-md-4">
+        <label for="pagination">Paginar:</label>
+        <select [(ngModel)]="opcionSeleccionado" (change)="capturar()">
+            <option value="5" >5</option>
+            <option *ngFor="let quantity of rank; let index = index">
+              {{quantity}}
+            </option>
+        </select>
+    <!-- <p [hidden]="opcionSeleccionado == 5">Haz seleccionado la opción # {{ verSeleccion }}</p> -->
+</div>
+<!-- </div> -->
+<div class="row">
+  <div *ngFor='let user of usersDetails | paginate: { itemsPerPage: verSeleccion, currentPage: p }' class="col-md-4">
+      <div class="card">
+          <img [src]="user.avatar_url" class="card-img-top" alt="{{ user.login }}">
+          <div class="card-body">
+              <h4 class="card-title">{{ user.name }}</h4>
+              <p>@{{user.login | uppercase}}</p>
+              <p class="card-text text-capitalize">
+                  <strong>{{user.public_repos}}</strong> Repositorios | <strong>{{user.followers}}</strong> seguidores | <strong>{{user.following}}</strong> seguidos
+                 </p>
+                 <a routerLink="/user/{{user.login}}/show" class="btn btn-link">Ver detalle</a>
+          </div>
+        </div>
+</div>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

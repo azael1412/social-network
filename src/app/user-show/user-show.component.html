@@ -1,0 +1,17 @@
+<button (click)="list()" class="btn btn-link">Regresar</button><br>
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <div class="card">
+      <img class="card-img-top" *ngIf="user.avatar_url" [src]="user.avatar_url" alt="Card image" style="width:100%">
+      <div class="card-body">
+        <h4 class="card-title">{{user.name}}</h4>
+        <p>@{{user.login}}</p>
+        <p class="card-text text-capitalize">
+         <strong>{{user.public_repos}}</strong>   Repositorios | <strong>{{user.followers }}</strong> <a routerLink="/user/{{user.login}}/followers" class="btn btn-link">seguidores</a> | <strong>{{user.following }} </strong> <a routerLink="/user/{{user.login}}/following" class="btn btn-link">seguidos</a>
+           </p>
+      </div>
+    </div>
+   
+  </div>
+</div>
+  

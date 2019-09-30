@@ -1,0 +1,38 @@
+  <div class="row">
+      <div class="col-md-8">
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" class="form-control" name="filterUser" placeholder="Nombre de usuario"
+                aria-describedby="basic-addon1"
+            [(ngModel)]="filterUser"
+            autofocus="autofocus"
+            >
+          </div>
+        </div>
+        <div class="col-md-4">
+           Ordenar: <button [class.active]="order === 'followers'"
+            (click)="setOrder('followers')" class="btn btn-link">
+             <span [hidden]="reverse">Descendente ▼</span
+              ><span [hidden]="!reverse">Ascendente ▲</span>
+             </button>
+        </div>
+     
+
+      <div *ngFor="let user of usersDetails | filter:filterUser | orderBy: order:reverse:'case-insensitive'" class="col-md-4">
+          <div class="card">
+              <img [src]="user.avatar_url" class="card-img-top" alt="{{ user.login }}">
+              <div class="card-body">
+                  <h4 class="card-title">{{ user.name }}</h4>
+                  <p>@{{user.login | uppercase}}</p>
+                  <p class="card-text text-capitalize">
+                    <strong>{{user.public_repos}}</strong> Repositorios | <strong>{{user.followers}}</strong> seguidores | <strong>{{user.following}}</strong> seguidos
+                     </p>
+                     <a routerLink="/user/{{user.login}}/show" class="btn btn-link">Ver detalle</a>
+              </div>
+            </div>
+  </div>
+  </div>
+ 
+
